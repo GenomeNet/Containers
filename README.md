@@ -36,7 +36,7 @@ If Podman is installed, the command will return the version number. If it is not
 
 2. Run the Python script using the following command:
 
-````
+```
 ./virus.py --input example.fasta --output virus_prediction --batch_size 5000 --level genus --verbose
 ```
 
