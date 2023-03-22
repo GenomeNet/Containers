@@ -37,8 +37,17 @@ If Podman is installed, the command will return the version number. If it is not
 2. Run the Python script using the following command:
 
 ```
-./virus.py --input example.fasta --output virus_prediction --batch_size 5000 --level genus --verbose
+./virus.py --input example.fasta --output virus_prediction_genus --batch_size 5000 --level genus
 ```
+
+and for the binary level
+
+
+```
+./virus.py --input example.fasta --output virus_prediction_binary --batch_size 5000 --level binary
+```
+
+An example output is in the `virus_prediction_binary` and `virus_prediction_genus` folder 
 
 **Note:** Replace `example.fasta` with the path to your input file, and replace `/path/to/output_directory` with the path to the directory where you want to save the output files. The script will run the virus tool on your input file and save the output files in the specified output directory.
 
