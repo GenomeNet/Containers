@@ -1,4 +1,4 @@
-# GenomeNet installation guide
+# deepG predictions
 
 These are Python script that runs containerized versions of the deepG for prediction.
 
