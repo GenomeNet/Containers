@@ -49,7 +49,7 @@ and for the binary level
 
 An example output is in the `virus_prediction_binary` and `virus_prediction_genus` folder 
 
-**Note:** Replace `example.fasta` with the path to your input file, and replace `/path/to/output_directory` with the path to the directory where you want to save the output files. The script will run the virus tool on your input file and save the output files in the specified output directory.
+**Note:** Replace `example.fasta` with the path to your input file. The script will run the virus tool on your input file and save the output files in the specified output directory.
 
 Here are the options you can use with the `virus.py` script:
 
