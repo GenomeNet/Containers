@@ -42,10 +42,16 @@ If Podman is installed, the command will return the version number. If it is not
 
 and for the binary level
 
-
 ```
 ./virus.py --input example.fasta --output virus_prediction_binary --batch_size 5000 --level binary
 ```
+
+for the binary level, it is possible to output the mean prediction per FASTA entry. This is currently very slow. 
+
+```
+./virus.py --input example.fasta --output virus_prediction_binary --batch_size 5000 --level binary --by_entry
+```
+
 
 An example output is in the `virus_prediction_binary` and `virus_prediction_genus` folder 
 
