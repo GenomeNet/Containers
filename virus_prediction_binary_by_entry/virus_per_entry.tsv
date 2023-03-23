@@ -1,0 +1,3 @@
+"entry_id"	"name"	"virus_mean"	"virus_sd"	"virus_min"	"virus_max"	"num_pred"
+1	"entry_1"	0.009	0.018	0.002	0.272	2061
+2	"entry_2"	0.02	0.06	0.001	0.98	23844
