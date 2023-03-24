@@ -64,6 +64,7 @@ for the binary level, it is possible to output the mean prediction per FASTA ent
 ./virus.py --input example.fasta --output virus_prediction_binary --batch_size 5000 --level binary --by_entry
 ```
 
+With the `--fast` parameter, only one subsample per entry will be evaluated
 ```
 ./virus.py --input example.fasta --output virus_prediction_binary_fast --batch_size 5000 --level binary --by_entry --fast
 ```
