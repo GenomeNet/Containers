@@ -101,16 +101,21 @@ def run_podman(input_file, output_dir, use_gpu=False, batch_size=3000, level="bi
             if not output_path.exists():
                 output_path.mkdir(parents=True)
 
-            # Copy output files from temporary data directory to the specified output directory
-            output_files = (temp_data_path / "output").glob("*")
-            for output_file in output_files:
+        # Copy output files from temporary data directory to the specified output directory
+        output_files = (temp_data_path / "output").glob("*")
+        for output_file in output_files:
+            if output_file.is_file():
                 if verbose:
                     print(f"Copying output file '{output_file.name}' to the specified output directory...")
                 shutil.copy(output_file, output_path / output_file.name)
+            elif output_file.is_dir():  # Add this block to handle directories
+                if verbose:
+                    print(f"Copying output directory '{output_file.name}' to the specified output directory...")
+                shutil.copytree(output_file, output_path / output_file.name)
 
-            # Print a finishing message with input and output files information
-            finishing_message = f"deepG container finished successfully.\nInput: '{input_path}', Output directory: '{output_path}'"
-            print(colored(finishing_message, 'green'))
+        # Print a finishing message with input and output files information
+        finishing_message = f"deepG container finished successfully.\nInput: '{input_path}', Output directory: '{output_path}'"
+        print(colored(finishing_message, 'green'))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

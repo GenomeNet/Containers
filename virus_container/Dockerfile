@@ -30,6 +30,14 @@ RUN apt-get update && \
         libjq-dev && \
     rm -rf /var/lib/apt/lists/*
 
+# For plotting
+RUN apt-get update && \
+    apt-get install -y libcairo2-dev libpango1.0-dev
+
+# For HTML file output
+RUN apt-get update && \
+    apt-get install -y libcairo2-dev libpango1.0-dev pandoc
+
 # Set timezone
 RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata
@@ -69,6 +77,7 @@ RUN wget https://f000.backblazeb2.com/file/genomenet/models/virus_genus_2023-01-
 
 # add Rscript
 ADD predict.r predict.r
+ADD predict_test.r predict_test.r
 
 # Set up a user modifyable python3 environment
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -102,6 +111,9 @@ RUN pip3 install \
 RUN R -e "install.packages('tensorflow', dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('devtools', dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('optparse', dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('zoo')"
+RUN R -e "install.packages('plotly')"
+RUN R -e "install.packages('htmlwidgets')"
 RUN R -e "devtools::install_github('genomenet/deepG')"
 
 ENTRYPOINT ["Rscript"]
