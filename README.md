@@ -40,18 +40,33 @@ If Podman is installed, the command will return the version number. If it is not
 ./virus.py --input example.fasta --output virus_prediction_genus --batch_size 5000 --level genus
 ```
 
+and to output one prediction per FASTA entry (will evaluate all subsamples per entry)
+
+```
+./virus.py --input example.fasta --output virus_prediction_genus_by_entry --batch_size 5000 --level binary --by_entry
+```
+
+and to output one prediction per FASTA entry (fast mode, only one sample per entry)
+
+```
+./virus.py --input example.fasta --output virus_prediction_genus_by_entry_fast --batch_size 5000 --level binary --by_entry --fast
+```
+
 and for the binary level
 
 ```
 ./virus.py --input example.fasta --output virus_prediction_binary --batch_size 5000 --level binary
 ```
 
-for the binary level, it is possible to output the mean prediction per FASTA entry. This is currently very slow. 
+for the binary level, it is possible to output the mean prediction per FASTA entry. This will evaluate all subsamples per entry.
 
 ```
 ./virus.py --input example.fasta --output virus_prediction_binary --batch_size 5000 --level binary --by_entry
 ```
 
+```
+./virus.py --input example.fasta --output virus_prediction_binary_fast --batch_size 5000 --level binary --by_entry --fast
+```
 
 An example output is in the `virus_prediction_binary` and `virus_prediction_genus` folder 
 
