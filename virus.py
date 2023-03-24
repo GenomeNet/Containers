@@ -32,7 +32,7 @@ def is_podman_installed():
     except FileNotFoundError:
         return False
 
-def run_podman(input_file, output_dir, use_gpu=False, batch_size=3000, level="binary", verbose=False, by_entry=False):
+def run_podman(input_file, output_dir, use_gpu=False, batch_size=3000, level="binary", verbose=False, by_entry=False, fast=False):
     if not is_podman_installed():
         print("Error: Podman is not installed.")
         print("Please follow the installation instructions at https://podman.io/getting-started/installation.html")
@@ -65,6 +65,8 @@ def run_podman(input_file, output_dir, use_gpu=False, batch_size=3000, level="bi
         
         if by_entry:
             cmd.append("--by_entry")
+        if fast:
+            cmd.append("--fast")
 
         print(colored("Starting deepG container", 'blue'))
 
@@ -129,10 +131,11 @@ if __name__ == "__main__":
     parser.add_argument("--input", required=True, help="Path to input file")
     parser.add_argument("--output", default=get_default_output_dir(), help="Path to output directory (default: current date, e.g., 'deepG_virus_20210312_1')")
     parser.add_argument("--by_entry", action="store_true", help="Get predictions for each FASTA entry")
+    parser.add_argument("--fast", action="store_true", help="Only evaluate one subsample per entry")
     parser.add_argument("--gpu", action="store_true", help="Use GPU mode")
     parser.add_argument("--batch_size", type=int, default=3000, help="Batch size for processing (default: 3000)")
     parser.add_argument("--level", choices=["binary", "genus"], default="binary", help="Prediction level (default: 'binary')")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose mode for more information during execution")
 
     args = parser.parse_args()
-    run_podman(args.input, args.output, args.gpu, args.batch_size, args.level, args.verbose, args.by_entry)
+    run_podman(args.input, args.output, args.gpu, args.batch_size, args.level, args.verbose, args.by_entry, args.fast)
