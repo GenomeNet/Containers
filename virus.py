@@ -68,7 +68,8 @@ def run_podman(input_file, output_dir, use_gpu=False, batch_size=3000, level="bi
         if fast:
             cmd.append("--fast")
 
-        print(colored("Starting deepG container", 'blue'))
+        if verbose:
+            print(colored("Starting deepG container", 'blue'))
 
         def read_output(fd):
             while True:
@@ -117,7 +118,9 @@ def run_podman(input_file, output_dir, use_gpu=False, batch_size=3000, level="bi
 
         # Print a finishing message with input and output files information
         finishing_message = f"deepG container finished successfully.\nInput: '{input_path}', Output directory: '{output_path}'"
-        print(colored(finishing_message, 'green'))
+        if verbose:
+            if verbose:
+                print(colored(finishing_message, 'green'))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
