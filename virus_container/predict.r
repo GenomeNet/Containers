@@ -94,7 +94,7 @@ if (opt$model == "binary") {
 
 						pred_list <- load_prediction(h5_path = h5_path)
 						df <- as.data.frame(pred_list$states)
-						colnames(df) <- c("virus", "non_virus")
+						colnames(df) <- c("non_virus", "virus")
 						message(paste0("Numer of FASTA entries predicted as viral: ",length(which(df$virus >= 0.5))))
 						message(paste0("Numer of FASTA entries predicted as non-viral: ",length(which(df$virus < 0.5))))               
 						write.table(df, file = "/data/output/predictions.tsv", sep = "\t", quote =F, row.names = FALSE)
@@ -181,7 +181,7 @@ write.table(pred_all, file = "/data/output/predictions_binary_summary.tsv", sep 
    # b = Sys.time()
  
     df <- data.frame(pred$states)
-    names(df) <- c("non_viral", "viral")
+    names(df) <- c("non_virus", "virus")
     write.table(df, file = "/data/output/predictions_binary.tsv", sep = "\t", row.names = FALSE)
       agg <- colMeans(df)
     agg_o <- agg[order(agg, decreasing = T)]
@@ -266,7 +266,7 @@ write.table(max_predictions, file = "/data/output/predictions_genus_summary.csv"
         names(df) <- genus_labels
         agg <- colMeans(df)
         agg_o <- agg[order(agg, decreasing = T)]
-        message(paste0("Predicted FASTA entry as ", names(agg_o[i]), " (", round(agg_o[i], digits = 1),")" ))
+        message(paste0("Predicted FASTA entry as ", names(agg_o[i]), " (", round(agg_o[i], digits = 1)*100,"%)" ))
         l[[i]] <- data.frame(name = names(pred_list)[[i]],
                             predicted = names(agg_o[i]),
                             probability = round(agg_o[i], digits = 3))

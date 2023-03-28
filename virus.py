@@ -31,7 +31,7 @@ def is_podman_installed():
         return True
     except FileNotFoundError:
         return False
-
+        
 def run_podman(input_file, output_dir, use_gpu=False, batch_size=3000, level="binary", verbose=False, by_entry=False, fast=False):
     if not is_podman_installed():
         print("Error: Podman is not installed.")
