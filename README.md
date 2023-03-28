@@ -34,7 +34,13 @@ If Podman is installed, the command will return the version number. If it is not
 
 1. Navigate to the cloned repository in a terminal window.
 
-2. Run the Python script using the following command:
+2. Pull the image
+
+```
+podman pull docker.io/genomenet/virus
+```
+
+3. Run the Python script using the following command:
 
 ```
 ./virus.py --input example.fasta --output virus_prediction_genus --batch_size 5000 --level genus
