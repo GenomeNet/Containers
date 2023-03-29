@@ -18,7 +18,6 @@ This script will install the following dependencies:
 
 * argparse
 * pathlib2
-* termcolor
 
 It will also check if Podman is installed and install it if it is not present.
 
@@ -30,7 +29,27 @@ podman --version
 
 If Podman is installed, the command will return the version number. If it is not installed, the command will return an error.
 
-## Running the Python script
+## sORF models
+
+1. Navigate to the cloned repository in a terminal window.
+
+2. Pull the image
+
+```
+podman pull docker.io/genomenet/sorf
+```
+
+3. Run the Python script using the following command:
+
+```
+./sorf.py --input example.fasta --output sorf_prediction --batch_size 5000
+```
+
+An example output is in the `sorf_prediction` folder 
+
+**Note:** Replace `example.fasta` with the path to your input file. The script will run the sorf tool on your input file and save the output files in the specified output directory. If you don't specify an output directory, it will create a folder like deepG_sorf_20230329_1 with the current date. 
+
+## Virus models
 
 1. Navigate to the cloned repository in a terminal window.
 
@@ -75,9 +94,6 @@ With the `--fast` parameter, only one subsample per entry will be evaluated
 ./virus.py --input example.fasta --output virus_prediction_binary_fast --batch_size 5000 --level binary --by_entry --fast
 ```
 
-An example output is in the `virus_prediction_binary` and `virus_prediction_genus` folder 
-
-**Note:** Replace `example.fasta` with the path to your input file. The script will run the virus tool on your input file and save the output files in the specified output directory.
 
 Here are the options you can use with the `virus.py` script:
 

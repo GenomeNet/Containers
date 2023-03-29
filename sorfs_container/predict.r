@@ -158,7 +158,7 @@ df <- bitmap_pred(fasta_df = NULL,
                   fasta_path = opt$input,
                   fasta_index = 1,
                   batch_size = opt$batch_size,
-                  return_summary = FALSE,
+                  return_summary = TRUE,
                   step = opt$step,
                   out_names = out_names,
                   char_sequence = NULL,
@@ -168,9 +168,8 @@ df <- bitmap_pred(fasta_df = NULL,
                   include_label = FALSE,
                   summary_method = "mean")
 
-write.table(df, file = "/data/output/predictions.tsv", sep = "\t", quote = F, row.names = FALSE)
-df2 <- data.frame(position = rep(df$position, 2),
-                  conf = c(df$positive_direction, df$negative_direction),
-                  direction = rep(c("positive", "negative"), each = nrow(df)))
+df$position <- 1:nrow(df)
+df$positive_direction <- round(df$positive_direction, digits = 2)
+df$negative_direction <- round(df$negative_direction, digits = 2)
 
-write.table(df2, file = "/data/output/predictions_2.tsv", sep = "\t", quote = F, row.names = FALSE)
+write.table(df, file = "/data/output/predictions.tsv", sep = "\t", quote = F, row.names = FALSE)
