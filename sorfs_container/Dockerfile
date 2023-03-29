@@ -52,11 +52,11 @@ COPY --from=tidyverse_base /usr/local/bin/Rscript /usr/local/bin/Rscript
 ENV R_HOME=/usr/local/lib/R
 ENV PATH=$PATH:/usr/local/lib/R/bin
 
-## Download the GenomeNet models
-#ADD model_binary.h5 model_binary.h5
-
 # Set the working directory
 WORKDIR /workspace
+
+## Download the GenomeNet models
+RUN wget https://f000.backblazeb2.com/file/bioinf/model_binary_sorf.h5
 
 # Set PATHS
 ENV WORKON_HOME /opt/virtualenvs
