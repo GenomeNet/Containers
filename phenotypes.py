@@ -98,7 +98,8 @@ def run_podman(input_file, output_dir, use_gpu=False, batch_size=300, verbose=Fa
                 output_path.mkdir(parents=True)
 
         # Copy output files from temporary data directory to the specified output directory
-        output_files = (temp_data_path / "output").glob("*")
+        output_files = temp_data_path.glob("*")
+
         for output_file in output_files:
             if output_file.is_file():
                 if verbose:
