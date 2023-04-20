@@ -128,8 +128,8 @@ if __name__ == "__main__":
     parser.add_argument("--input", required=True, help="Path to input file")
     parser.add_argument("--output", default=get_default_output_dir(), help="Path to output directory (default: current date, e.g., 'deepG_imputation_20210312_1')")
     parser.add_argument("--gpu", action="store_true", help="Use GPU mode")
-    parser.add_argument("--batch_size", type=int, default=3000, help="Batch size for processing (default: 3000)")
-    parser.add_argument("--threshold", type=int, default=0.5, help="Threshold probability")
+    parser.add_argument("--batch_size", type=int, default=1000, help="Batch size for processing (default: 1000)")
+    parser.add_argument("--threshold", type=float, default=0.5, help="Threshold probability")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose mode for more information during execution")
 
     args = parser.parse_args()
