@@ -9,7 +9,7 @@ library(keras)
 option_list <- list(
   make_option(c("-i", "--input"), type = "character", default = "/data/example.fasta"),
   make_option(c("-o", "--output"), type = "character", default = "/data/output.fasta"),
-  make_option(c("-t", "--threshold"), type = "integer", default = 0.5,
+  make_option(c("-t", "--threshold"), type = "numeric", default = 0.5,
   help = "Threshold [default %default]", metavar = "number"),
   make_option(c("-b", "--batch_size"), type = "integer", default = 2,
 help = "Number of samples processed in one batch [default %default]",
@@ -74,7 +74,7 @@ last_piece <- len %% maxlen
 last_addition <- (maxlen - last_piece) * 4
 n_positions <- which(strsplit(sequence, "")[[1]] == "N")
 orig_ambigous_n <- length(which(strsplit(sequence, "")[[1]] == "N"))
-message(paste0("Found ", length(n_positions), " ambigous nucleotides in the file"))
+message(paste0("Found ", length(n_positions), " ambiguous nucleotides in the file"))
 
 theshold <- opt$threshold
 
@@ -94,7 +94,7 @@ if (len > maxlen) {
              message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'A' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
         } else {
-                 message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+                 message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
         }
           
       } else if (a == 2){
@@ -104,7 +104,7 @@ if (len > maxlen) {
                             message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'C' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
         } else {
-                 message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+                 message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
         }
           
       } else if (a == 3){
@@ -114,7 +114,7 @@ if (len > maxlen) {
                             message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'G' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
         } else {
-                 message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+                 message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
         }
           
       } else if (a == 4){
@@ -124,7 +124,7 @@ if (len > maxlen) {
                             message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'A' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
         } else {
-                 message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+                 message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
         }
           
       } 
@@ -141,7 +141,7 @@ if (len > maxlen) {
                   message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'A' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
             } else {
-                 message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+                 message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
             }
           
           
@@ -153,7 +153,7 @@ if (len > maxlen) {
                    message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'C' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
             } else {
-                 message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+                 message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
             }
 
       }else if (a == 3){
@@ -163,7 +163,7 @@ if (len > maxlen) {
                message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'G' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
         } else {
-                 message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+                 message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
         }
           
       }else if (a == 4){
@@ -173,7 +173,7 @@ if (len > maxlen) {
                message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'T' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
         } else {
-                 message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+                 message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
         }
       }
     } 
@@ -191,7 +191,7 @@ if (len > maxlen) {
                  message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'A' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
          } else {
-           message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+           message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
          }
     
     }else if (a == 2) {
@@ -200,7 +200,7 @@ if (len > maxlen) {
                  message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'C' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
          } else {
-           message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+           message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
          }
         
     }else if (a == 3) {
@@ -209,7 +209,7 @@ if (len > maxlen) {
                  message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'G' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
          } else {
-           message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+           message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
          }
         
     }else if (a == 4) {
@@ -218,7 +218,7 @@ if (len > maxlen) {
                  message(paste0("Position " , j, ": Imputing nucleotide 'N' with 'T' (probability ",
                        round(a_prob, digits = 2) * 100, "%)"))
          } else {
-           message(paste0("Position " , j, ": Skipping ambigous nucleotide 'N' since no probability is above threshold"))
+           message(paste0("Position " , j, ": Skipping ambiguous nucleotide 'N' since no probability is above threshold"))
          }
         
     }
